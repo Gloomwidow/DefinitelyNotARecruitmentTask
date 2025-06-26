@@ -7,6 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// TO-DO: replace with Redis
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();

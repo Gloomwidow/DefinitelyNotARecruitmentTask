@@ -1,7 +1,6 @@
 ﻿using CoreWCF;
 using SoapService.Enums;
 using System.Collections.Concurrent;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SoapService.Services
 {
@@ -9,6 +8,10 @@ namespace SoapService.Services
     {
         // To simulate delay time
         private const int DelayTime = 30 * 1000; // 30 seconds
+
+        // This service creates task with GUID.
+        // It returns GUID of created task so app can request status by other method
+        // Event bus can also be used here
 
         private readonly ConcurrentDictionary<string, CustomTaskStatus> CurrentTasks = new ConcurrentDictionary<string, CustomTaskStatus>();
 
