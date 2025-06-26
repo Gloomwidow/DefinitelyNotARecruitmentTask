@@ -7,11 +7,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Allow angular app to access this API in CORS Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendAllowed", policy =>
+    {
+        policy.WithOrigins("http://localhost:53307")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors("FrontendAllowed");
     app.UseSwagger();
     app.UseSwaggerUI();
 }
